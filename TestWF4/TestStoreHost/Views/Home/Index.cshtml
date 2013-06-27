@@ -1,0 +1,95 @@
+﻿@using TestStoreHost.MS.Models
+
+<h3 class="page-title">Requests</h3>
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a> <span class="divider">/</span></li>
+    <li class="active">Requests</li>
+</ul>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="btn-toolbar">
+            <a class="btn btn-primary" href="@Url.Action("Add")">
+               <i class="icon-plus icon-white"></i>New</a>
+            <button class="btn">
+                Import</button>
+            <button class="btn">
+                Export</button>
+            <div class="btn-group">
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Update Time</th>
+                    <th style="width: 52px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TestStoreHost.MS.Models.Request request in ViewBag.RequestList)
+                {<tr>
+                    <td>@request.Id</td>
+                    <td>@request.Name</td>
+                    <td>@request.Status</td>
+                    <td>@request.UpdateTime</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new {id = request.Id})"><i class="icon-pencil"></i></a>
+                        <a href="@Url.Action("Delete", new {id = request.Id})"><i class="icon-remove"></i></a>
+                    </td>
+                </tr>}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            @{ var datapage = (TestStoreHost.Models.DataPage)ViewBag.DataPage; }
+            <ul>
+                @if (datapage.PrevPage.HasValue)
+                {
+                <li><a href="@Url.Action("Index",new {page = datapage.PrevPage.Value})">&lt;</a></li>
+                }
+                else
+                {
+                <li><a href="#">&lt;</a></li>
+                }
+
+                @for (int p = datapage.BeginPage; p <= datapage.EndPage; p++)
+                {
+                <li><a href="@Url.Action("Index",new {page = p})">@p</a></li>
+                }
+                @if (datapage.NextPage.HasValue)
+                {
+                <li><a href="@Url.Action("Index",new {page = datapage.PrevPage.Value})">&gt;</a></li>
+                }
+                else
+                {
+                <li><a href="#">&gt;</a></li>
+                }
+            </ul>
+        </div>
+
+        <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h3 id="myModalLabel">
+                    Delete Confirmation</h3>
+            </div>
+            <div class="modal-body">
+                <p class="error-text">
+                    <i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete the
+                    user?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">
+                    Cancel</button>
+                <button class="btn btn-danger" data-dismiss="modal">
+                    Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

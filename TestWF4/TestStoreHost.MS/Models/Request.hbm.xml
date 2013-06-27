@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="TestStoreHost.MS" namespace="TestStoreHost.MS.Models">
+    <class name="Request" table="T_Request" >
+      <id name="Id" type="long"  column="RequestId" >
+        <generator class="native" />
+      </id>
+
+      <property name="Name" column="RequestName" type="string" not-null="false" length="50" />
+
+      <property name="File1" type="string" />
+
+      <property name="File2" type="string" />
+
+      <property name="File3" type="string" />
+
+      <property name="Status" type="RequestStatus" />
+
+      <property name="UpdateTime" type="DateTime" />
+      
+      <property name="WokflowId" type="Guid" not-null="false" />
+
+    </class>
+</hibernate-mapping>
