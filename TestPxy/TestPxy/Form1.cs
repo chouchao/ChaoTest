@@ -10,6 +10,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace TestPxy
 {
@@ -32,6 +33,10 @@ namespace TestPxy
         private string enco = "";
 
         private bool IsStop = true;
+
+        private Regex regIPPort = new Regex(
+        @"[\s]*?(?<ip>[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3})[\s]*?:[\s]*?(?<port>[\d]{2,5})",
+        RegexOptions.Compiled);
 
         public Form1()
         {
@@ -66,14 +71,17 @@ namespace TestPxy
             pxyList.Clear();
             for (int i = 0; i < ps.Length; i++)
             {
-                var pary = ps[i].Split('$')[0].Split(':');
-                pxyList.Add(
-                    new Pxy()
-                    {
-                        Ip = pary[0],
-                        Port = pary[1]
-                    }
-                );
+                var pm = regIPPort.Match(ps[i]);
+                if (pm.Success)
+                {
+                    pxyList.Add(
+                        new Pxy()
+                        {
+                            Ip = pm.Groups["ip"].Value,
+                            Port = pm.Groups["port"].Value
+                        }
+                    );
+                }
             }
 
             url = textBox1.Text;
