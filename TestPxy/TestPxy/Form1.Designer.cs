@@ -81,7 +81,7 @@
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(274, 146);
+            this.textBox3.Size = new System.Drawing.Size(274, 310);
             this.textBox3.TabIndex = 4;
             // 
             // lblThreadCount
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 235);
+            this.ClientSize = new System.Drawing.Size(298, 399);
             this.Controls.Add(this.txtEncoding);
             this.Controls.Add(this.txtThreadCount);
             this.Controls.Add(this.label2);
