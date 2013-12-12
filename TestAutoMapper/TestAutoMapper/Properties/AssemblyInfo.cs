@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TestDynamicAX.AX")]
+[assembly: AssemblyTitle("TestAutoMapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Accenture")]
-[assembly: AssemblyProduct("TestDynamicAX.AX")]
+[assembly: AssemblyProduct("TestAutoMapper")]
 [assembly: AssemblyCopyright("Copyright © Accenture 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -17,10 +17,10 @@ using System.Runtime.InteropServices;
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(true)]
+[assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("86e91ee6-1662-4327-b748-5e2eff768c30")]
+[assembly: Guid("cd21997c-1cc4-43e3-ae02-35490e70c5bb")]
 
 // Version information for an assembly consists of the following four values:
 //

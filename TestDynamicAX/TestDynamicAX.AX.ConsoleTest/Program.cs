@@ -10,7 +10,7 @@ namespace TestDynamicAX.AX.ConsoleTest
         static void Main(string[] args)
         {
             DynamicExecuter de = new DynamicExecuter();
-            var result = de.Execute(null);
+            var result = de.Execute("TestDynamicAX.DynamicFileList", "{Path:'abc'}");
             Console.WriteLine(result);
             Console.ReadLine();
         }

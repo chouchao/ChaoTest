@@ -14,8 +14,23 @@ namespace TestDynamicAX.DynamicFileList
     {
         public string Execute(string param)
         {
-            var files = Directory.GetFiles("C:\\");
+            string[] files;
+            if (param == null)
+            {
+                files = Directory.GetFiles("C:\\");
+            }
+            else
+            {
+                ExecuteParam p = JsonConvert.DeserializeObject<ExecuteParam>(param);
+                //files = Directory.GetFiles(p.Path);
+                return JsonConvert.SerializeObject(p);
+            }
             return JsonConvert.SerializeObject(files);
+        }
+
+        public class ExecuteParam
+        {
+            public string Path { get; set; }
         }
     }
 }

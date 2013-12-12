@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script>
+    function getResult() {
+        var testax = document.getElementById("testax");
+        if (testax) {
+            var name = "TestDynamicAX.DynamicFileList";
+            var para = { Path: 'D:\\' };
+            alert(testax.Execute(name, null));
+        }
+    }
+</script>
+
+<h2>Index</h2>
+
+<object id="testax" classid="clsid:6A1AAB77-7A28-3F7D-8F47-86F7776719A0">
+</object>
+
+<button onclick="getResult()">Get Result</button>
