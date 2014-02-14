@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects default-lazy-init="true" xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database">
+
+  <!-- Database Configuration -->
+  <db:provider id="Res1.DbProvider"
+                   provider="SqlServer-2.0"
+                   connectionString="Data Source=10.254.161.197;Initial Catalog=Test_Res1;User ID=sa;Password=Zaq12wsx"/>
+
+  <!-- NHibernate Configuration -->
+  <object id="Res1.NHibernateSessionFactory" type="Res.Core.CustomLocalSessionFactoryObject, Res.Core">
+    <property name="DbProvider" ref="Res1.DbProvider"/>
+    <property name="MappingAssemblies">
+      <list>
+        <value>Res1.Domain</value>
+      </list>
+    </property>
+    <property name="HibernateProperties">
+      <dictionary>
+        <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>
+        <entry key="connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
+        <entry key="use_proxy_validator" value="false" />
+        <entry key="default_schema" value="dbo"/>
+        <entry key="show_sql" value="false" />
+        <entry key="format_sql" value="true" />
+        <!--<entry key="hbm2ddl.auto" value="update"/>-->
+        <entry key="command_timeout" value="60"/>
+        <!-- Query cache -->
+        <entry key="cache.use_query_cache" value="true"/>
+        <!-- Second level cache -->
+        <entry key="cache.use_second_level_cache" value="true"/>
+        <entry key="cache.provider_class" value="NHibernate.Cache.HashtableCacheProvider, NHibernate"/>
+      </dictionary>
+    </property>
+
+    <!-- provides integation with Spring's declarative transaction management features -->
+    <property name="ExposeTransactionAwareSessionFactory" value="true" />
+  </object>
+
+  <object id="Res1.HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
+    <property name="SessionFactory" ref="Res1.NHibernateSessionFactory" />
+    <property name="TemplateFlushMode" value="Auto" />
+    <property name="CacheQueries" value="true" />
+  </object>
+
+  <object id="Res1DataRepository" type="Res.Core.Repository&lt;Res1.Domain.Res1Data>, Res.Core">
+    <property name="HibernateTemplate" ref="Res1.HibernateTemplate" />
+  </object>
+
+  <object id="Res1DataService" type="Res1.Service.Res1DataService">
+    <property name="Res1DataRepository" ref="Res1DataRepository" />
+  </object>
+  
+</objects>

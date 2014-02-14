@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects default-lazy-init="true" xmlns="http://www.springframework.net">
+  <object type="Res.WebTest.Controllers.HomeController, Res.WebTest" singleton="false" >
+    <property name="ResDataService" ref="ResDataService" />
+  </object>
+</objects>

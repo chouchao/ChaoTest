@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects default-lazy-init="true" xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx">
+
+  <object id="transactionManager"
+          type="Spring.Data.Core.TxScopeTransactionManager, Spring.Data">
+  </object>
+
+  <!-- Service -->
+  <object id="ResDataService" type="Res.Service.ResDataService">
+    <property name="Res1DataRepository" ref="Res1DataRepository" />
+    <property name="Res2DataRepository" ref="Res2DataRepository" />
+  </object>
+
+  <tx:attribute-driven/>
+  
+</objects>

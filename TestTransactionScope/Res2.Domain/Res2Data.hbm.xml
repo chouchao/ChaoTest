@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Res2.Domain" namespace="Res2.Domain">
+	<class name="Res2Data" table="T_Res2Data" lazy="true" >
+		<id name="Id" type="long" column="ID" >
+			<generator class="native" />
+		</id>
+
+		<property name="Res1Count" type="int" not-null="true" />
+
+	</class>
+</hibernate-mapping>
