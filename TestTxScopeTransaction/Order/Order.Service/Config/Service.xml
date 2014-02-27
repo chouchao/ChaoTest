@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object id="transactionManager"
+        type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate33">
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>
+  </object>
+
+  <object id="transactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+    <property name="TransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributeSource">
+      <object type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data"/>
+    </property>
+  </object>
+
+  <object id="BaseTransactionManager"  type="Spring.Transaction.Interceptor.TransactionProxyFactoryObject, Spring.Data" abstract="true">
+    <property name="PlatformTransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributes">
+      <name-values>  
+        <add key="*" value="PROPAGATION_REQUIRED"/>
+      </name-values>
+    </property>
+  </object>
+
+  <object id="Order.OrderManager" parent="BaseTransactionManager">
+    <property name="Target">
+      <object type="Order.Service.Implement.OrderManager, Order.Service">
+        <property name="Dao" ref="Order.OrderDao"/>
+      </object>
+    </property>
+  </object>
+
+</objects>
