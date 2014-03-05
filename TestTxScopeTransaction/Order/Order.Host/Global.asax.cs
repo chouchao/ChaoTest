@@ -40,6 +40,10 @@ namespace Order.Host
 
         protected void Session_End(object sender, EventArgs e)
         {
+            if (HttpContext.Current == null)
+            {
+                return;
+            }
             SessionScope sessionScope = HttpContext.Current.Session["SessionScope"] as SessionScope;
             if (sessionScope != null)
             {

@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -71,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implement\Product2Manager.cs" />
+    <Compile Include="IProduct2Manager.cs" />
+    <Compile Include="CustomX509CertificateValidator.cs" />
     <Compile Include="Implement\TestDataManager.cs" />
     <Compile Include="IProductManager.cs" />
     <Compile Include="Implement\ProductManager.cs" />
@@ -82,6 +86,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\OrderProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RemoteOrderProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -101,6 +110,14 @@
       <Project>{C8583C07-4497-4692-AEC0-D05DC34F6CE9}</Project>
       <Name>Order.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Product2.Dao\Product2.Dao.csproj">
+      <Project>{98470703-3DF7-431D-A827-EFA83794764F}</Project>
+      <Name>Product2.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Product2.Domain\Product2.Domain.csproj">
+      <Project>{ED78EF92-A9B6-4FDA-BB9D-0535372C11AC}</Project>
+      <Name>Product2.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Product.Dao\Product.Dao.csproj">
       <Project>{3FBD1EC5-FDC0-494D-BFB7-0ABD544A9BCA}</Project>
       <Name>Product.Dao</Name>
@@ -114,7 +131,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\Order.Domain.OrderInfo.datasource" />
     <None Include="Service References\CustomerProxy\Host.wsdl" />
     <None Include="Service References\CustomerProxy\Product.Service.CustomerProxy.CustomerInfo.datasource">
@@ -139,10 +158,21 @@
     <None Include="Service References\OrderProxy\Server2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RemoteOrderProxy\Host.wsdl" />
+    <None Include="Service References\RemoteOrderProxy\Server.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteOrderProxy\Server1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RemoteOrderProxy\Server2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CustomerProxy\" />
     <WCFMetadataStorage Include="Service References\OrderProxy\" />
+    <WCFMetadataStorage Include="Service References\RemoteOrderProxy\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CustomerProxy\Server.disco" />
@@ -170,6 +200,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\OrderProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteOrderProxy\Server.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteOrderProxy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteOrderProxy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RemoteOrderProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

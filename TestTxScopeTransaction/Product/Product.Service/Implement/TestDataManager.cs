@@ -8,6 +8,7 @@ using Spring.Transaction.Interceptor;
 using Product.Domain;
 using Order.Domain;
 using Spring.Transaction;
+using Product2.Domain;
 
 namespace Product.Service.Implement
 {
@@ -15,11 +16,18 @@ namespace Product.Service.Implement
     {
         public IProductManager ProductManager { get; set; }
 
+        public IProduct2Manager Product2Manager { get; set; }
+
         [Transaction]
         public void InitData()
         {
             //var customerProxy = new CustomerContractClient();
             var orderProxy = new OrderContractClient();
+            orderProxy.ClientCredentials.UserName.UserName = "admin";
+            orderProxy.ClientCredentials.UserName.Password = "123456";
+            var remoteOrderProxy = new Product.Service.RemoteOrderProxy.OrderContractClient();
+            remoteOrderProxy.ClientCredentials.UserName.UserName = "admin";
+            remoteOrderProxy.ClientCredentials.UserName.Password = "123456";
 
             //var id = customerProxy.Save(new CustomerInfo
             //{
@@ -33,17 +41,89 @@ namespace Product.Service.Implement
                 CustomerId = Convert.ToInt32(1)
             });
 
+            remoteOrderProxy.Save(new OrderInfo
+            {
+                Address = "大连市",
+                OrderDate = DateTime.Now,
+                CustomerId = Convert.ToInt32(1)
+            });
+
             ProductManager.Save(new ProductInfo
             {
                 Name = "产品" + DateTime.Now.ToString("yyyyMMddHHmmss"),
                 Price = 200
             });
 
+            Product2Manager.Save(new Product2Info
+            {
+                Name = "产品" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                Price = 200
+            });
+        }
+
+        [Transaction]
+        public void BatchData(int count)
+        {
+            //var customerProxy = new CustomerContractClient();
+            var orderProxy = new OrderContractClient();
+            orderProxy.ClientCredentials.UserName.UserName = "admin";
+            orderProxy.ClientCredentials.UserName.Password = "123456";
+            var remoteOrderProxy = new Product.Service.RemoteOrderProxy.OrderContractClient();
+            remoteOrderProxy.ClientCredentials.UserName.UserName = "admin";
+            remoteOrderProxy.ClientCredentials.UserName.Password = "123456";
+
+            //var id = customerProxy.Save(new CustomerInfo
+            //{
+            //    Name = "张三"
+            //});
+            for (int i = 0; i < count; i++)
+            {
+                orderProxy.Save(new OrderInfo
+                {
+                    Address = "大连市",
+                    OrderDate = DateTime.Now,
+                    CustomerId = Convert.ToInt32(1)
+                });
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                remoteOrderProxy.Save(new OrderInfo
+                {
+                    Address = "大连市",
+                    OrderDate = DateTime.Now,
+                    CustomerId = Convert.ToInt32(1)
+                });
+            }
+            for (int i = 0; i < count; i++)
+            {
+                ProductManager.Save(new ProductInfo
+                {
+                    Name = "产品" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                    Price = 200
+                });
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                Product2Manager.Save(new Product2Info
+                {
+                    Name = "产品" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                    Price = 200
+                });
+            }
+
+            orderProxy.Close();
+            remoteOrderProxy.Close();
         }
 
         [Transaction]
         public void DistributedUpdate()
         {
+            var product = ProductManager.Get(15);
+            product.Price += 1;
+            ProductManager.Update(product);
+
             var customerProxy = new CustomerContractClient();
             var orderProxy = new OrderContractClient();
 
@@ -59,6 +139,10 @@ namespace Product.Service.Implement
         [Transaction]
         public void DistributedUpdateException()
         {
+            var product = ProductManager.Get(15);
+            product.Price += 1;
+            ProductManager.Update(product);
+
             var customerProxy = new CustomerContractClient();
             var orderProxy = new OrderContractClient();
 

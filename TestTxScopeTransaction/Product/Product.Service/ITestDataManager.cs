@@ -9,6 +9,8 @@ namespace Product.Service
     {
         void InitData();
 
+        void BatchData(int count);
+
         void DistributedUpdate();
 
         void DistributedUpdateException();

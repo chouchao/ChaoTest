@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Product2.Domain" namespace="Product2.Domain">
+  <class name="Product2Info" table="T_Product2" lazy="true" >
+
+    <id name="ID" column="id" type="Int32" >
+      <generator class="native" />
+    </id>
+
+    <property name="Name" type="string">
+      <column name="Product_Name" length="50"/>
+    </property>
+
+    <property name="Price" type="decimal">
+      <column name="Product_Price" precision="16" scale="2"/>
+    </property>
+
+  </class>
+</hibernate-mapping>

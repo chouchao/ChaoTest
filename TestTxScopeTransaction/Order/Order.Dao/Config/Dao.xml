@@ -13,7 +13,8 @@
                    connectionString="Server=.\RESERACH;Database=Test_Res2;Trusted_Connection=True;"/>
   <!--<db:provider id="DbProvider"
                    provider="SqlServer-2.0"
-                   connectionString="Data Source=10.254.161.197;Initial Catalog=Xccelerator_dev;User ID=sa;Password=Zaq12wsx"/>-->
+                   connectionString="Data Source=10.202.104.167;Initial Catalog=Test_Res2;User ID=sa;Password=Zaq12wsx;"/>-->
+  
 
   <object id="NHibernateSessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate33">
     <property name="DbProvider" ref="DbProvider"/>

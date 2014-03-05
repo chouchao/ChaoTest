@@ -11,6 +11,9 @@
   <db:provider id="DbProvider"
                    provider="SqlServer-2.0"
                    connectionString="Server=.\RESERACH;Database=Test_Res3;Trusted_Connection=True;"/>
+  <!--<db:provider id="DbProvider"
+                   provider="SqlServer-2.0"
+                   connectionString="Data Source=10.202.104.167;Initial Catalog=Test_Res2;User ID=sa;Password=Zaq12wsx;"/>-->
 
   <object id="NHibernateSessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate33">
     <property name="DbProvider" ref="DbProvider"/>
