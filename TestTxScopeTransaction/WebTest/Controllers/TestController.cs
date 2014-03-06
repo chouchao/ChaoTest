@@ -13,6 +13,7 @@ namespace WebTest.Controllers
 
         public ActionResult Index()
         {
+            TestDataManager.InitData();
             return Content("");
             //return View();
         }
