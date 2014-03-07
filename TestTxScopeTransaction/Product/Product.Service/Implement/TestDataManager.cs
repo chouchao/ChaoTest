@@ -59,6 +59,8 @@ namespace Product.Service.Implement
                 Name = "产品" + DateTime.Now.ToString("yyyyMMddHHmmss"),
                 Price = 200
             });
+            orderProxy.Close();
+            remoteOrderProxy.Close();
         }
 
         [Transaction]
