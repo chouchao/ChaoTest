@@ -18,16 +18,28 @@ namespace Product.Service.Implement
 
         public IProduct2Manager Product2Manager { get; set; }
 
+        private static RemoteOrderProxy.OrderContractClient GetOrderContractClient()
+        {
+            var remoteOrderProxy = new Product.Service.RemoteOrderProxy.OrderContractClient();
+            remoteOrderProxy.ClientCredentials.UserName.UserName = "admin";
+            remoteOrderProxy.ClientCredentials.UserName.Password = "123456";
+            return remoteOrderProxy;
+        }
+
+        private static OrderContractClient CetOrderContractClient()
+        {
+            var orderProxy = new OrderContractClient();
+            orderProxy.ClientCredentials.UserName.UserName = "admin";
+            orderProxy.ClientCredentials.UserName.Password = "123456";
+            return orderProxy;
+        }
+
         [Transaction]
         public void InitData()
         {
             //var customerProxy = new CustomerContractClient();
-            var orderProxy = new OrderContractClient();
-            orderProxy.ClientCredentials.UserName.UserName = "admin";
-            orderProxy.ClientCredentials.UserName.Password = "123456";
-            var remoteOrderProxy = new Product.Service.RemoteOrderProxy.OrderContractClient();
-            remoteOrderProxy.ClientCredentials.UserName.UserName = "admin";
-            remoteOrderProxy.ClientCredentials.UserName.Password = "123456";
+            var orderProxy = CetOrderContractClient();
+            var remoteOrderProxy = GetOrderContractClient();
 
             //var id = customerProxy.Save(new CustomerInfo
             //{
@@ -67,12 +79,8 @@ namespace Product.Service.Implement
         public void BatchData(int count)
         {
             //var customerProxy = new CustomerContractClient();
-            var orderProxy = new OrderContractClient();
-            orderProxy.ClientCredentials.UserName.UserName = "admin";
-            orderProxy.ClientCredentials.UserName.Password = "123456";
-            var remoteOrderProxy = new Product.Service.RemoteOrderProxy.OrderContractClient();
-            remoteOrderProxy.ClientCredentials.UserName.UserName = "admin";
-            remoteOrderProxy.ClientCredentials.UserName.Password = "123456";
+            var orderProxy = CetOrderContractClient();
+            var remoteOrderProxy = GetOrderContractClient();
 
             //var id = customerProxy.Save(new CustomerInfo
             //{
@@ -127,7 +135,7 @@ namespace Product.Service.Implement
             ProductManager.Update(product);
 
             var customerProxy = new CustomerContractClient();
-            var orderProxy = new OrderContractClient();
+            var orderProxy = CetOrderContractClient();
 
             OrderInfo order = orderProxy.Get(2);
             order.OrderDate = DateTime.Now;
@@ -146,7 +154,7 @@ namespace Product.Service.Implement
             ProductManager.Update(product);
 
             var customerProxy = new CustomerContractClient();
-            var orderProxy = new OrderContractClient();
+            var orderProxy = CetOrderContractClient();
 
             OrderInfo order = orderProxy.Get(2);
             order.OrderDate = DateTime.Now;
@@ -170,7 +178,7 @@ namespace Product.Service.Implement
         [Transaction(ReadOnly = true)]
         public DateTime GetOrderDate()
         {
-            var orderProxy = new OrderContractClient();
+            var orderProxy = CetOrderContractClient();
 
             var customer = orderProxy.Get(2);
 
