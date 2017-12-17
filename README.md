@@ -1,4 +1,4 @@
-ChaoTest
+dotnet-tests
 ========
 
-My research code
+Test some .Net features and library.
