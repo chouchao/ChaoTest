@@ -1,0 +1,11 @@
+C:\GITRoot\MiniJS\MiniJS\bin\Debug\MiniJS.exe
+C:\GITRoot\MiniJS\MiniJS\bin\Debug\MiniJS.pdb
+C:\GITRoot\MiniJS\MiniJS\bin\Debug\WebGrease.dll
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.csprojAssemblyReference.cache
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.Form1.resources
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.Properties.Resources.resources
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.csproj.GenerateResource.cache
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.csproj.CoreCompileInputs.cache
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.csproj.CopyComplete
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.exe
+C:\GITRoot\MiniJS\MiniJS\obj\Debug\MiniJS.pdb
