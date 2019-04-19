@@ -19,42 +19,76 @@ namespace PostForm
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox1.Text))
+            if (!string.IsNullOrWhiteSpace(txtUrl.Text))
             {
                 button1.Enabled = false;
                 Application.DoEvents();
-                textBox3.Text = SendPost(textBox1.Text, textBox2.Text);
+                textBox3.Text = await SendPost(txtUrl.Text, txtData.Text);
                 button1.Enabled = true;
             }
         }
 
-        private string SendPost(string url, string data)
+        private async Task<string> SendPost(string url, string data)
         {
             try
             {
-                if (checkBox1.Checked)
-                {
-                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-                }
+                SetTLS();
 
                 HttpClient client = new HttpClient();
-                Dictionary<string, string> formData = new Dictionary<string, string>();
-                if (!string.IsNullOrWhiteSpace(data))
+
+                // url和post
+                var request = new HttpRequestMessage()
                 {
-                    data.Split('&').ToList().ForEach(param =>
-                    {
-                        var key = param.Split('=')[0];
-                        var value = param.Split('=')[1];
-                        formData.Add(key, value);
-                    });
-                }
-                return client.PostAsync(url, new FormUrlEncodedContent(formData)).Result.Content.ReadAsStringAsync().Result;
+                    RequestUri = new Uri(url),
+                    Method = HttpMethod.Post,
+                };
+
+                SetHeaders(request);
+                SetContent(data, request);
+
+                var response = await client.SendAsync(request);
+
+                return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {
                 return ex.ToString();
+            }
+        }
+
+        private void SetTLS()
+        {
+            // TLS 1.2
+            if (checkBox1.Checked)
+            {
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            }
+        }
+
+        private static void SetContent(string data, HttpRequestMessage request)
+        {
+            Dictionary<string, string> formData = new Dictionary<string, string>();
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                data.Split('&').ToList().ForEach(param =>
+                {
+                    var key = param.Split('=')[0];
+                    var value = param.Split('=')[1];
+                    formData.Add(key, value);
+                });
+            }
+            request.Content = new FormUrlEncodedContent(formData);
+        }
+
+        private void SetHeaders(HttpRequestMessage request)
+        {
+            var headers = txtHeaders.Lines;
+            foreach (var header in headers)
+            {
+                var headerKV = header.Split(':');
+                request.Headers.Add(headerKV[0], headerKV[1]);
             }
         }
     }
