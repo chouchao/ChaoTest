@@ -11,7 +11,8 @@ namespace SFPConsole.Commands
     {
         public static Dictionary<string, ISPFCommandHandler> Handlers =
             new Dictionary<string, ISPFCommandHandler>(){
-                {"DomainUserToLocalGroup", new DomainUserToLocalGroup()}
+                {nameof(DomainUserToLocalGroup), new DomainUserToLocalGroup()},
+                {nameof(IISAppPoolSwitch), new IISAppPoolSwitch()}
             };
 
         public static bool Contains(string key)

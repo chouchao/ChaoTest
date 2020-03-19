@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.commandItemInput4 = new SFPConsole.Gen.CommandItemInput();
             this.commandItemInput3 = new SFPConsole.Gen.CommandItemInput();
             this.commandItemInput2 = new SFPConsole.Gen.CommandItemInput();
             this.commandItemInput1 = new SFPConsole.Gen.CommandItemInput();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.commandItemInput5 = new SFPConsole.Gen.CommandItemInput();
             this.commandItemInput6 = new SFPConsole.Gen.CommandItemInput();
             this.commandItemInput7 = new SFPConsole.Gen.CommandItemInput();
@@ -77,18 +77,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(611, 464);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(8, 418);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(595, 38);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "generate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // comboBox1
             // 
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -98,15 +86,6 @@
             this.comboBox1.Size = new System.Drawing.Size(595, 24);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(8, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(595, 22);
-            this.textBox1.TabIndex = 2;
             // 
             // commandItemInput4
             // 
@@ -151,6 +130,27 @@
             this.commandItemInput1.Size = new System.Drawing.Size(595, 31);
             this.commandItemInput1.TabIndex = 3;
             this.commandItemInput1.Value = "";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(8, 49);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(595, 22);
+            this.textBox1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(8, 418);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(595, 38);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "generate";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // commandItemInput5
             // 
